@@ -23,7 +23,7 @@ if(value === 'other'){
 
 })
 
-shirtColor.setAttribute('hidden', '');
+shirtColor.setAttribute('disabled', '');
 shirtDesign.addEventListener('change', ()=>{
     if(value === 'js puns'){
     shirtColor.removeAttribute('disabled', '')
