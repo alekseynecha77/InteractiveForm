@@ -7,7 +7,7 @@ const e = document.getElementById("title");
 window.onload = function() {
     document.getElementById('name').focus();
     document.getElementById('other-job-role').style.display = "none";
-
+    shirtColor.disabled = true;
   }
 
 
@@ -23,34 +23,52 @@ if(value === 'other'){
 
 })
 
-shirtColor.setAttribute('disabled', '');
 shirtDesign.addEventListener('change', ()=>{
-    if(value === 'js puns'){
-    shirtColor.removeAttribute('disabled', '')
-    shirtColorOption[0].setAttribute('hidden', '');
-    shirtColorOption[1].removeAttribute('hidden', '');
-    shirtColorOption[2].removeAttribute('hidden', '');
-    shirtColorOption[3].removeAttribute('hidden', '');
-    shirtColorOption[4].setAttribute('hidden', '');
-    shirtColorOption[5].setAttribute('hidden', '');
-    shirtColorOption[6].setAttribute('hidden', '');
-    }
-    
-    else if(value==='heart js'){
-        shirtColor.removeAttribute('disabled', '')
-        shirtColorOption[0].setAttribute('hidden', '');
-        shirtColorOption[1].setAttribute('hidden', '');
-        shirtColorOption[2].setAttribute('hidden', '');
-        shirtColorOption[3].setAttribute('hidden', '');
-        shirtColorOption[4].removeAttribute('hidden', '');
-        shirtColorOption[5].removeAttribute('hidden', '');
-        shirtColorOption[6].removeAttribute('hidden', '');
-    }
-    else{
-        shirtColor.setAttribute('disabled', '')
+    shirtColor.disabled = false;
 
+for(var i = 0; i < shirtColor.length; i++){
 
+    //JS Puns
+    if(shirtColor[i].value === 'tomato'){
+        shirtColor[i].style.display = 'none';
     }
+    if(shirtColor[i].value === 'steelblue'){
+        shirtColor[i].style.display = 'none';
+    }
+    if(shirtColor[i].value === 'dimgrey'){
+        shirtColor[i].style.display = 'none';
+    }
+    if(shirtColor[i].value === 'cornflowerblue'){
+        shirtColor[i].style.display = 'block';
+    }
+    if(shirtColor[i].value === 'darkslategrey'){
+        shirtColor[i].style.display = 'block';
+    }
+    if(shirtColor[i].value === 'gold'){
+        shirtColor[i].style.display = 'block';
+    }
+
+    // I ♥ JS
+
+    if(shirtColor[i].value === 'tomato'){
+        shirtColor[i].style.display = 'block';
+    }
+    if(shirtColor[i].value === 'steelblue'){
+        shirtColor[i].style.display = 'block';
+    }
+    if(shirtColor[i].value === 'dimgrey'){
+        shirtColor[i].style.display = 'block';
+    }
+    if(shirtColor[i].value === 'cornflowerblue'){
+        shirtColor[i].style.display = 'none';
+    }
+    if(shirtColor[i].value === 'darkslategrey'){
+        shirtColor[i].style.display = 'none';
+    }
+    if(shirtColor[i].value === 'gold'){
+        shirtColor[i].style.display = 'none';
+    }
+}
 
 
 })
