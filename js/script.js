@@ -29,7 +29,7 @@ shirtDesign.addEventListener('click', ()=>{
 
 for(var i = 0; i < shirtColor.length; i++){
 var dataTheme = shirtColor.getAttribute('data-theme');
-    //JS Puns
+
     if(shirtColor[i].value === dataTheme){
         shirtColor[i].style.display = 'block';
     }
