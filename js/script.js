@@ -24,7 +24,7 @@ if(value === 'other'){
 
 })
 
-shirtDesign.addEventListener('click', ()=>{
+shirtDesign.addEventListener('change', ()=>{
     shirtColor.disabled = false;
 
 for(var i = 0; i < shirtColor.length; i++){
