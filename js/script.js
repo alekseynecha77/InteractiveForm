@@ -27,10 +27,13 @@ if(value === 'other'){
 shirtDesign.addEventListener('change', ()=>{
     shirtColor.disabled = false;
 
-for(var i = 0; i < shirtColor.length; i++){
-var dataTheme = shirtColor.getAttribute('data-theme');
+for(var i = 0; i < shirtColorOption.length; i++){
 
-    if(shirtColor[i].value === dataTheme){
+var dataTheme = shirtColorOption[i].getAttribute('data-theme');
+console.log(shirtColorOption[i].value);
+shirtColor.selectedIndex = 0;
+
+    if(shirtDesign.value === dataTheme){
         shirtColor[i].style.display = 'block';
     }
     else{
