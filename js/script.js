@@ -54,13 +54,14 @@ activities.addEventListener('change', (e)=>{
 const checked = e.target.checked;
 
 if(checked === 'true'){
-    cost+= total * 1;
+    cost  += (total * 1);
 
 
-    }else{
-        cost -= total * 1;
+    }else {
+        cost -= (total * 1);
 
     }
+
     activitiesCost.innerHTML = `Total: $${ parseInt(cost) }`;
 
 
