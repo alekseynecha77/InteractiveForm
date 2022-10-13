@@ -3,7 +3,9 @@ const shirtColorOption = document.querySelectorAll("#color option");
 const shirtDesign = document.getElementById("design");
 const e = document.getElementById("title");
 const activities = document.getElementById('activities');
-
+let total = 0;
+const activitiesCost= document.getElementById('activities-cost');
+const checkBoxes = document.querySelectorAll('input[type=checkbox]');
 
 window.onload = function() {
     document.getElementById('name').focus();
@@ -30,7 +32,6 @@ shirtDesign.addEventListener('change', ()=>{
 for(var i = 0; i < shirtColorOption.length; i++){
 
 var dataTheme = shirtColorOption[i].getAttribute('data-theme');
-console.log(shirtColorOption[i].value);
 shirtColor.selectedIndex = 0;
 
     if(shirtDesign.value === dataTheme){
@@ -45,9 +46,24 @@ shirtColor.selectedIndex = 0;
 
 })
 
-// activities.onchange =(e)=>{
-// const click = e.target;
-// const cost = click.getAttribute('data-cost');
-// const parsedCost = parseInt(cost);
+//register for Activities
+activities.addEventListener('change', (e)=>{
 
-// }
+
+var cost = e.target.getAttribute('data-cost');
+const checked = e.target.checked;
+for (let i = 0; i< checkBoxes.length; i++){
+if(checked === 'true'){
+    cost += total * i;
+
+
+    }else{
+        cost -= total * i;
+
+    }
+    activitiesCost.innerHTML = `Total: $${cost}`;
+
+}
+
+})
+
