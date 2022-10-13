@@ -50,20 +50,18 @@ shirtColor.selectedIndex = 0;
 activities.addEventListener('change', (e)=>{
 
 
-var cost = e.target.getAttribute('data-cost');
+    var cost = e.target.getAttribute('data-cost');
 const checked = e.target.checked;
-for (let i = 0; i< checkBoxes.length; i++){
+
 if(checked === 'true'){
-    cost += total * i;
+    cost+= total * 1;
 
 
     }else{
-        cost -= total * i;
+        cost -= total * 1;
 
     }
-    activitiesCost.innerHTML = `Total: $${cost}`;
+    activitiesCost.innerHTML = `Total: $${ parseInt(cost) }`;
 
-}
 
 })
-
