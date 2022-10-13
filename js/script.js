@@ -6,6 +6,11 @@ const activities = document.getElementById('activities');
 let total = 0;
 const activitiesCost= document.getElementById('activities-cost');
 const checkBoxes = document.querySelectorAll('input[type=checkbox]');
+const cardInput = document.getElementById('payment').selectedOptions[1];
+const form = document.querySelector("form");
+const ccNum = document.getElementById("cc-num");
+
+const paymentOption = document.getElementById("payment");
 
 window.onload = function() {
     document.getElementById('name').focus();
@@ -66,3 +71,57 @@ if(checked === true){
 
 
 })
+
+paymentOption.addEventListener("change", e=> {
+    paymentType = e.target.value;
+    if (paymentType === "credit-card") {
+        creditPayment.removeAttribute('hidden', '');
+        paypalPayment.setAttribute('hidden', '');
+        bitcoinPayment.setAttribute('hidden', '');
+    } else if (paymentType === "paypal") {
+        creditPayment.setAttribute('hidden', '');
+        paypalPayment.removeAttribute('hidden', '');
+        bitcoinPayment.setAttribute('hidden', '');
+    } else if (paymentType === "bitcoin") {
+        creditPayment.setAttribute('hidden', '');
+        paypalPayment.setAttribute('hidden', '');
+        bitcoinPayment.removeAttribute('hidden', '');
+    }
+})
+
+
+function cardnumber()
+{
+    let arr = [];
+    const ccNumValue = ccNum.value;
+    var cardno = /^[0-9]{13,16}$/;;
+    arr += cardno.test(ccNumValue);
+    if(paymentOption.value === "credit-card" || paymentOption.value === "select method") {
+
+    if(!ccNumRegex.test(ccNumValue)) {
+        ccNum.parentElement.classList.add("not-valid");
+        ccNum.parentElement.classList.remove("valid");
+        ccNum.parentElement.lastElementChild.style.display = "block"; 
+        ccNum.classList.add("error")
+    } else {
+        ccNum.parentElement.classList.add("valid");
+        ccNum.parentElement.classList.remove("not-valid");
+        ccNum.parentElement.lastElementChild.style.display = "none"; 
+        ccNum.classList.remove("error")
+    }
+
+ if(arr.includes(false)) {
+            return false;
+        }
+
+    }
+return true;
+
+}
+
+
+function paymentCC() {
+    paymentOption.selectedIndex = 1;
+}
+
+paymentCC();
