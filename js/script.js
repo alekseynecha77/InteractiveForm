@@ -122,17 +122,7 @@ function cardnumber()
 return true;
 
 }
-form.addEventListener("submit",e=> {
-    let arr = [];
-    arr += validateName();
-    arr += validateEmail();
-    arr += validateActivities();
-    arr += validatePayment();
-    if(arr.includes(false)) {
-        e.preventDefault();
-    }
-   
-})
+
 
 cardnumber();
 
