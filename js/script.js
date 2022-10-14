@@ -12,6 +12,10 @@ const ccNum = document.getElementById("cc-num");
 
 const paymentOption = document.getElementById("payment");
 
+const creditPayment = document.getElementById("credit-card");
+const bitcoinPayment = document.getElementById("bitcoin");
+const paypalPayment = document.getElementById("paypal");
+
 window.onload = function() {
     document.getElementById('name').focus();
     document.getElementById('other-job-role').style.display = "none";
@@ -72,7 +76,7 @@ if(checked === true){
 
 })
 
-form.addEventListener("change", e=> {
+paymentOption.addEventListener("change", e=> {
     paymentType = e.target.value;
     if (paymentType === "credit-card") {
         creditPayment.removeAttribute('hidden', '');
@@ -118,7 +122,19 @@ function cardnumber()
 return true;
 
 }
+form.addEventListener("submit",e=> {
+    let arr = [];
+    arr += validateName();
+    arr += validateEmail();
+    arr += validateActivities();
+    arr += validatePayment();
+    if(arr.includes(false)) {
+        e.preventDefault();
+    }
+   
+})
 
+cardnumber();
 
 function paymentCC() {
     paymentOption.selectedIndex = 1;
