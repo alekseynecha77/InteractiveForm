@@ -112,6 +112,7 @@ function cardnumber()
         ccNum.parentElement.classList.remove("not-valid");
         ccNum.parentElement.lastElementChild.style.display = "none"; 
         ccNum.classList.remove("error")
+
     }
 
  if(arr.includes(false)) {
