@@ -123,9 +123,17 @@ function cardnumber()
 return true;
 
 }
+ccNum.addEventListener("click", e=> {
+    let arr = [];
 
+    arr +=  cardnumber();
+    if(arr.includes(false)) {
+        e.preventDefault();
+        ccNum.style.backgroundColor = "red";
+    }
+   
+})
 
-cardnumber();
 
 function paymentCC() {
     paymentOption.selectedIndex = 1;
