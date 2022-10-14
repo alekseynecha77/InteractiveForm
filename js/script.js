@@ -72,7 +72,7 @@ if(checked === true){
 
 })
 
-paymentOption.addEventListener("change", e=> {
+form.addEventListener("change", e=> {
     paymentType = e.target.value;
     if (paymentType === "credit-card") {
         creditPayment.removeAttribute('hidden', '');
