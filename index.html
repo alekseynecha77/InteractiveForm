@@ -17,7 +17,7 @@
   </header>
 	<div class="container">
 
-    <form action="index.html" method="post" novalidate>
+    <form name="myForm" onsubmit="validateForm()" action="index.html" method="post" novalidate>
       <p id="form-hint" class="form-hint"><span class="asterisk">*</span> - required field</p>
 
       <div class="basic-info-and-shirt-box">       
@@ -25,7 +25,7 @@
           <legend>Basic Info</legend>
           
           <label for="name">Name: <span class="asterisk">*</span>
-            <input type="text" id="name" name="user-name" class="error-border">
+            <input type="text" id="name" name="user-name" class="error-border" >
             <span id="name-hint" class="name-hint hint">Name field cannot be blank</span>
           </label>
           

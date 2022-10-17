@@ -16,6 +16,7 @@ const creditPayment = document.getElementById("credit-card");
 const bitcoinPayment = document.getElementById("bitcoin");
 const paypalPayment = document.getElementById("paypal");
 
+
 window.onload = function() {
     document.getElementById('name').focus();
     document.getElementById('other-job-role').style.display = "none";
@@ -76,67 +77,42 @@ if(checked === true){
 
 })
 
-paymentOption.addEventListener("change", e=> {
-    paymentType = e.target.value;
-    if (paymentType === "credit-card") {
-        creditPayment.removeAttribute('hidden', '');
-        paypalPayment.setAttribute('hidden', '');
-        bitcoinPayment.setAttribute('hidden', '');
-    } else if (paymentType === "paypal") {
-        creditPayment.setAttribute('hidden', '');
-        paypalPayment.removeAttribute('hidden', '');
-        bitcoinPayment.setAttribute('hidden', '');
-    } else if (paymentType === "bitcoin") {
-        creditPayment.setAttribute('hidden', '');
-        paypalPayment.setAttribute('hidden', '');
-        bitcoinPayment.removeAttribute('hidden', '');
-    }
-})
 
+function validateForm() {
 
-function cardnumber()
-{
-    let arr = [];
-    const ccNumValue = ccNum.value;
-    var cardno = /^[0-9]{13,16}$/;;
-    arr += cardno.test(ccNumValue);
-    if(paymentOption.value === "credit-card" || paymentOption.value === "select method") {
+    let x = document.forms["myForm"]["user-name"].value;
 
-    if(!ccNumRegex.test(ccNumValue)) {
-        ccNum.parentElement.classList.add("not-valid");
-        ccNum.parentElement.classList.remove("valid");
-        ccNum.parentElement.lastElementChild.style.display = "block"; 
-        ccNum.classList.add("error")
-    } else {
-        ccNum.parentElement.classList.add("valid");
-        ccNum.parentElement.classList.remove("not-valid");
-        ccNum.parentElement.lastElementChild.style.display = "none"; 
-        ccNum.classList.remove("error")
+    var regEx = /^5[1-5][0-9]{14}$|^2(?:2(?:2[1-9]|[3-9][0-9])|[3-6][0-9][0-9]|7(?:[01][0-9]|20))[0-9]{12}$/;
 
+    const email = document.getElementById('email');
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+ //name validation
+    if (x == "") {
+      alert("Name must be filled out");
+      return false;
     }
 
- if(arr.includes(false)) {
-            return false;
-        }
+        //email validation
+    
+        if(email.value.match(emailRegex)){
+            return true;
+             }else{
+                alert("Please enter a valid email.");
+                return false;
+             }
 
+//credit card validation
+   if(ccNum.value.match(regEx))
+     {
+      return true;
+     }
+   else
+     {
+     alert("Please enter a valid credit card number.");
+     return false;
+     }
+ 
+     
+  
     }
-return true;
-
-}
-ccNum.addEventListener("click", e=> {
-    let arr = [];
-
-    arr +=  cardnumber();
-    if(arr.includes(false)) {
-        e.preventDefault();
-        ccNum.style.backgroundColor = "red";
-    }
-   
-})
-
-
-function paymentCC() {
-    paymentOption.selectedIndex = 1;
-}
-
-paymentCC();
