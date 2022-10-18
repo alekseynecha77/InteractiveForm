@@ -153,7 +153,8 @@ arr += ccCvvRegEx.test(ccCvvValue);
 
 if(paymentOption.value === 'credit card' || paymentOption === "select option"){
 
-    //here we add style if the error founded
+    //here we add style if what the user type in input
+    // match what is in regular expression,
 if(!ccNumRegex.test(ccNumValue)){
         // match regular expression
 
