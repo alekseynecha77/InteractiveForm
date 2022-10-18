@@ -136,6 +136,7 @@ if(arr.includes(true)){
 
 function validatePayment(){
 
+    //here we add regular expression validation
 
 let arr = [];
 const ccNumValue = ccNum.value;
@@ -152,13 +153,17 @@ arr += ccCvvRegEx.test(ccCvvValue);
 
 if(paymentOption.value === 'credit card' || paymentOption === "select option"){
 
+    //here we add style if the error founded
 if(!ccNumRegex.test(ccNumValue)){
+        // match regular expression
+
     ccNumValue.parentElement.classList.remove("not-valid");
     ccNumValue.parentElement.classList.add("valid");
     ccNumValue.parentElement.lastElementChild.style.display = "none";
     ccNumValue.parentElement.classList.remove("error");
     
 }    else{
+    //didnt match regular expression
     ccNumValue.parentElement.classList.add("not-valid");
     ccNumValue.parentElement.classList.remove("valid");
     ccNumValue.parentElement.lastElementChild.style.display = "none";
@@ -166,6 +171,7 @@ if(!ccNumRegex.test(ccNumValue)){
 }
 
 if(!ccZipRegEx.test(ccZipValue)){
+     // match regular expression
     ccZipValue.parentElement.classList.remove("not-valid");
     ccZipValue.parentElement.classList.add("valid");
     ccZipValue.parentElement.lastElementChild.style.display = "none";
@@ -173,6 +179,7 @@ if(!ccZipRegEx.test(ccZipValue)){
    
 }    
 else{
+     //didnt match regular expression
     ccZipValue.parentElement.classList.add("not-valid");
     ccZipValue.parentElement.classList.remove("valid");
     ccZipValue.parentElement.lastElementChild.style.display = "none";
@@ -180,11 +187,14 @@ else{
 }
 
 if(!ccCvvRegEx.test(ccCvvValue)){
+      // match regular expression
     ccCvvValue.parentElement.classList.remove("not-valid");
     ccCvvValue.parentElement.classList.add("valid");
     ccCvvValue.parentElement.lastElementChild.style.display = "none";
     ccCvvValue.parentElement.classList.remove("error");
 }    else{
+         //didnt match regular expression
+
     ccCvvValue.parentElement.classList.add("not-valid");
     ccCvvValue.parentElement.classList.remove("valid");
     ccCvvValue.parentElement.lastElementChild.style.display = "none";
