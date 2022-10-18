@@ -94,10 +94,14 @@ function validateName(){
 }
 function validateEmail(){
 
-    const email = document.getElementById('email');
 
-    const validatonfoREmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(email.value.match(validatonfoREmail)){
+
+     const email = document.getElementById('email');
+     const emailInput = email.value;
+
+    const validatonforEmail =/^[^@]+@[^@.]+\.[a-z]+$/i.test(emailInput); //it will test emailinput for true or false
+    
+    if(!validatonforEmail){
         email.parentElement.classList.add('not-valid');
         email.parentElement.classList.remove('valid');
         email.parentElement.lastElementChild.style.display = 'block';
@@ -108,8 +112,7 @@ function validateEmail(){
         email.parentElement.classList.add("valid");
         email.parentElement.lastElementChild.style.display = "none";
         return true;
-    } 
- 
+    }   
 }
 // function validateActivities(){
 
@@ -121,11 +124,11 @@ function validateEmail(){
 form.addEventListener('submit', e =>{
 
 let arr = [];
-arr += validateName();
-arr += validateEmail();
+arr.push(validateName());
+arr.push(validateEmail());
 
 if(arr.includes(false)) {
-    e.preventDefault();
+e.preventDefault();
 }
 
 })
