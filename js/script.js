@@ -114,18 +114,101 @@ function validateEmail(){
         return true;
     }   
 }
-// function validateActivities(){
+function validateActivities(){
+let arr = [];
 
-// }
-// function validatePayment(){
-//  
-// }
+for( i = 0; i<checkBoxes.length; i++){
+    arr += checkBoxes[i].checked;
+}
+if(arr.includes(true)){
+    activities.parentElement.classList.remove("not-valid");
+    activities.parentElement.classList.add("valid");
+    activities.parentElement.lastElementChild.style.display = "none";
+
+    return true;
+}else{
+    activities.parentElement.classList.add("not-valid");
+    activities.parentElement.classList.remove("valid");
+    activities.parentElement.lastElementChild.style.display = 'block';
+    return false;
+}
+}
+
+function validatePayment(){
+
+
+let arr = [];
+const ccNumValue = ccNum.value;
+const ccNumRegex = /^[0-9]{13,16}$/;
+arr += ccNumRegex.test(ccNumValue);
+
+const ccZipValue = ccZip.value;
+const ccZipRegEx = /^[0-9]{5}$/;
+arr += ccZipRegEx.test(ccZipValue);
+
+const ccCvvValue = ccCvv.value;
+const ccCvvRegEx = /^[0-9]{3}$/;
+arr += ccCvvRegEx.test(ccCvvValue);
+
+if(paymentOption.value === 'credit card' || paymentOption === "select option"){
+
+if(!ccNumRegex.test(ccNumValue)){
+    ccNumValue.parentElement.classList.remove("not-valid");
+    ccNumValue.parentElement.classList.add("valid");
+    ccNumValue.parentElement.lastElementChild.style.display = "none";
+    ccNumValue.parentElement.classList.remove("error");
+    
+}    else{
+    ccNumValue.parentElement.classList.add("not-valid");
+    ccNumValue.parentElement.classList.remove("valid");
+    ccNumValue.parentElement.lastElementChild.style.display = "none";
+    ccNumValue.parentElement.classList.add("error");
+}
+
+if(!ccZipRegEx.test(ccZipValue)){
+    ccZipValue.parentElement.classList.remove("not-valid");
+    ccZipValue.parentElement.classList.add("valid");
+    ccZipValue.parentElement.lastElementChild.style.display = "none";
+    ccZipValue.parentElement.classList.remove("error");
+   
+}    
+else{
+    ccZipValue.parentElement.classList.add("not-valid");
+    ccZipValue.parentElement.classList.remove("valid");
+    ccZipValue.parentElement.lastElementChild.style.display = "none";
+    ccZipValue.parentElement.classList.add("error");
+}
+
+if(!ccCvvRegEx.test(ccCvvValue)){
+    ccCvvValue.parentElement.classList.remove("not-valid");
+    ccCvvValue.parentElement.classList.add("valid");
+    ccCvvValue.parentElement.lastElementChild.style.display = "none";
+    ccCvvValue.parentElement.classList.remove("error");
+}    else{
+    ccCvvValue.parentElement.classList.add("not-valid");
+    ccCvvValue.parentElement.classList.remove("valid");
+    ccCvvValue.parentElement.lastElementChild.style.display = "none";
+    ccCvvValue.parentElement.classList.add("error");
+}
+
+if(arr.includes(false)) {
+
+    return false;
+    }
+
+}
+return true;
+}
+
+
 
 form.addEventListener('submit', e =>{
 
 let arr = [];
 arr.push(validateName());
 arr.push(validateEmail());
+arr.push(validatePayment());
+arr.push(validateActivities());
 
 if(arr.includes(false)) {
 e.preventDefault();
