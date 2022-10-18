@@ -77,42 +77,67 @@ if(checked === true){
 
 })
 
-
-function validateForm() {
-
-    let x = document.forms["myForm"]["user-name"].value;
-
-    var regEx = /^5[1-5][0-9]{14}$|^2(?:2(?:2[1-9]|[3-9][0-9])|[3-6][0-9][0-9]|7(?:[01][0-9]|20))[0-9]{12}$/;
+function validateName(){
+    const name = document.getElementById('name');
+    if (name.value === '') { 
+      name.parentElement.classList.add('not-valid');
+      name.parentElement.classList.remove('valid');
+      name.parentElement.lastElementChild.style.display = 'block';
+      return false;
+    }else{
+        name.classList.remove("error");
+        name.parentElement.classList.remove("not-valid");
+        name.parentElement.classList.add("valid");
+        name.parentElement.lastElementChild.style.display = "none";
+        return true;
+    }
+}
+function validateEmail(){
 
     const email = document.getElementById('email');
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
- //name validation
-    if (x == "") {
-      alert("Name must be filled out");
-      return false;
-    }
-
-        //email validation
-    
-        if(email.value.match(emailRegex)){
-            return true;
-             }else{
-                alert("Please enter a valid email.");
-                return false;
-             }
-
-//credit card validation
-   if(ccNum.value.match(regEx))
-     {
-      return true;
-     }
-   else
-     {
-     alert("Please enter a valid credit card number.");
-     return false;
-     }
+    const validatonfoREmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(email.value.match(validatonfoREmail)){
+        email.parentElement.classList.add('not-valid');
+        email.parentElement.classList.remove('valid');
+        email.parentElement.lastElementChild.style.display = 'block';
+        return false;
+    }else{
+        email.classList.remove("error");
+        email.parentElement.classList.remove("not-valid");
+        email.parentElement.classList.add("valid");
+        email.parentElement.lastElementChild.style.display = "none";
+        return true;
+    } 
  
-     
-  
-    }
+}
+// function validateActivities(){
+
+// }
+// function validatePayment(){
+//  
+// }
+
+form.addEventListener('submit', e =>{
+
+let arr = [];
+arr += validateName();
+arr += validateEmail();
+
+if(arr.includes(false)) {
+    e.preventDefault();
+}
+
+})
+
+
+   
+
+
+
+
+
+
+
+
+

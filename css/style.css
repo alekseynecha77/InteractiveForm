@@ -149,7 +149,6 @@ input[type="checkbox"]:disabled {
 }
 
 select {
-	-webkit-appearance: none;
 	-webkit-border-radius: 0px;
 	font-size: 1em;
   font-weight: 500;
