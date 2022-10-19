@@ -122,15 +122,15 @@ for( i = 0; i<checkBoxes.length; i++){
     arr += checkBoxes[i].checked;
 }
 if(arr.includes(true)){
-    activities.parentElement.classList.remove("not-valid");
-    activities.parentElement.classList.add("valid");
-    activities.parentElement.lastElementChild.style.display = "none";
+    activities.classList.remove("not-valid");
+    activities.classList.add("valid");
+    activities.lastElementChild.style.display = "none";
 
     return true;
 }else{
-    activities.parentElement.classList.add("not-valid");
-    activities.parentElement.classList.remove("valid");
-    activities.parentElement.lastElementChild.style.display = 'block';
+    activities.classList.add("not-valid");
+    activities.classList.remove("valid");
+    activities.lastElementChild.style.display = 'block';
     return false;
 }
 }
