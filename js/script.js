@@ -11,11 +11,12 @@ const form = document.querySelector("form");
 const ccNum = document.getElementById("cc-num");
 
 const paymentOption = document.getElementById("payment");
-
+const ccZip = document.getElementById("zip");
 const creditPayment = document.getElementById("credit-card");
 const bitcoinPayment = document.getElementById("bitcoin");
 const paypalPayment = document.getElementById("paypal");
 
+const ccCvv = document.getElementById('cvv');
 
 window.onload = function() {
     document.getElementById('name').focus();
