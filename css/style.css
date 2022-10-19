@@ -2,7 +2,7 @@
   Base and header styles
 ==================================== */
 
-@import url('https://fonts.googleapis.com/css?family=Nunito|Roboto+Mono');
+@import url('https://fonts.googleapis.com/css?family=Nunito%7CRoboto+Mono');
 
 * {
   box-sizing: border-box;
@@ -149,6 +149,7 @@ input[type="checkbox"]:disabled {
 }
 
 select {
+	-webkit-appearance: none;
 	-webkit-border-radius: 0px;
 	font-size: 1em;
   font-weight: 500;

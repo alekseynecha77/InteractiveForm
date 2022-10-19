@@ -9,20 +9,46 @@ const checkBoxes = document.querySelectorAll('input[type=checkbox]');
 const cardInput = document.getElementById('payment').selectedOptions[1];
 const form = document.querySelector("form");
 const ccNum = document.getElementById("cc-num");
-
+const name = document.getElementById('name');
+const email = document.getElementById('email');
 const paymentOption = document.getElementById("payment");
 const ccZip = document.getElementById("zip");
 const creditPayment = document.getElementById("credit-card");
 const bitcoinPayment = document.getElementById("bitcoin");
 const paypalPayment = document.getElementById("paypal");
+const ccCvv = document.getElementById('cvv'); 
+const ccNumRegex = /^[0-9]{13,16}$/;
+const ccZipRegEx = /^[0-9]{5}$/;
+const ccCvvRegEx = /^[0-9]{3}$/;
+const nameRegex = /^[a-zA-Z\s]+$/i;
+const validatonforEmail = /^[^@]+@[^@.]+\.[a-z]+$/i;
 
-const ccCvv = document.getElementById('cvv');
 
 window.onload = function() {
     document.getElementById('name').focus();
     document.getElementById('other-job-role').style.display = "none";
     shirtColor.disabled = true;
+    paymentOption.value = "credit-card";    
   }
+
+bitcoinPayment.style.display = 'none';
+paypalPayment.style.display = 'none';
+
+paymentOption.addEventListener('change', (e) => {
+    if(e.target.value === 'credit-card'){
+        creditPayment.style.display = 'block';
+        bitcoinPayment.style.display = 'none';
+        paypalPayment.style.display = 'none';
+    }else if(e.target.value === 'paypal'){
+        creditPayment.style.display = 'none';
+        bitcoinPayment.style.display = 'none';
+        paypalPayment.style.display = 'block';
+    }else if(e.target.value === 'bitcoin'){
+        creditPayment.style.display = 'none';
+        bitcoinPayment.style.display = 'block';
+        paypalPayment.style.display = 'none';
+    }
+});  
 
 
 e.addEventListener('change', ()=>{
@@ -78,43 +104,20 @@ if(checked === true){
 
 })
 
-function validateName(){
-    const name = document.getElementById('name');
-    if (name.value === '') { 
-      name.parentElement.classList.add('not-valid');
-      name.parentElement.classList.remove('valid');
-      name.parentElement.lastElementChild.style.display = 'block';
-      return false;
+function validateInputs(input, regex){
+    console.log(input, regex);
+    if (input.value === '' || !regex.test(input.value)) { 
+      input.parentElement.classList.add('not-valid');
+      input.parentElement.classList.remove('valid');
+      input.parentElement.lastElementChild.style.display = 'block';
     }else{
-        name.classList.remove("error");
-        name.parentElement.classList.remove("not-valid");
-        name.parentElement.classList.add("valid");
-        name.parentElement.lastElementChild.style.display = "none";
-        return true;
+        input.classList.remove("error");
+        input.parentElement.classList.remove("not-valid");
+        input.parentElement.classList.add("valid");
+        input.parentElement.lastElementChild.style.display = "none";
     }
 }
-function validateEmail(){
 
-
-
-     const email = document.getElementById('email');
-     const emailInput = email.value;
-
-    const validatonforEmail =/^[^@]+@[^@.]+\.[a-z]+$/i.test(emailInput); //it will test emailinput for true or false
-    
-    if(!validatonforEmail){
-        email.parentElement.classList.add('not-valid');
-        email.parentElement.classList.remove('valid');
-        email.parentElement.lastElementChild.style.display = 'block';
-        return false;
-    }else{
-        email.classList.remove("error");
-        email.parentElement.classList.remove("not-valid");
-        email.parentElement.classList.add("valid");
-        email.parentElement.lastElementChild.style.display = "none";
-        return true;
-    }   
-}
 function validateActivities(){
 let arr = [];
 
@@ -135,107 +138,22 @@ if(arr.includes(true)){
 }
 }
 
-function validatePayment(){
-
-    //here we add regular expression validation
-
-let arr = [];
-const ccNumValue = ccNum.value;
-const ccNumRegex = /^[0-9]{13,16}$/;
-arr += ccNumRegex.test(ccNumValue);
-
-const ccZipValue = ccZip.value;
-const ccZipRegEx = /^[0-9]{5}$/;
-arr += ccZipRegEx.test(ccZipValue);
-
-const ccCvvValue = ccCvv.value;
-const ccCvvRegEx = /^[0-9]{3}$/;
-arr += ccCvvRegEx.test(ccCvvValue);
-
-if(paymentOption.value === 'credit card' || paymentOption === "select option"){
-
-    //here we add style if what the user type in input
-    // match what is in regular expression,
-if(!ccNumRegex.test(ccNumValue)){
-        // match regular expression
-
-    ccNumValue.parentElement.classList.remove("not-valid");
-    ccNumValue.parentElement.classList.add("valid");
-    ccNumValue.parentElement.lastElementChild.style.display = "none";
-    ccNumValue.parentElement.classList.remove("error");
-    
-}    else{
-    //didnt match regular expression
-    ccNumValue.parentElement.classList.add("not-valid");
-    ccNumValue.parentElement.classList.remove("valid");
-    ccNumValue.parentElement.lastElementChild.style.display = "none";
-    ccNumValue.parentElement.classList.add("error");
-}
-
-if(!ccZipRegEx.test(ccZipValue)){
-     // match regular expression
-    ccZipValue.parentElement.classList.remove("not-valid");
-    ccZipValue.parentElement.classList.add("valid");
-    ccZipValue.parentElement.lastElementChild.style.display = "none";
-    ccZipValue.parentElement.classList.remove("error");
-   
-}    
-else{
-     //didnt match regular expression
-    ccZipValue.parentElement.classList.add("not-valid");
-    ccZipValue.parentElement.classList.remove("valid");
-    ccZipValue.parentElement.lastElementChild.style.display = "none";
-    ccZipValue.parentElement.classList.add("error");
-}
-
-if(!ccCvvRegEx.test(ccCvvValue)){
-      // match regular expression
-    ccCvvValue.parentElement.classList.remove("not-valid");
-    ccCvvValue.parentElement.classList.add("valid");
-    ccCvvValue.parentElement.lastElementChild.style.display = "none";
-    ccCvvValue.parentElement.classList.remove("error");
-}    else{
-         //didnt match regular expression
-
-    ccCvvValue.parentElement.classList.add("not-valid");
-    ccCvvValue.parentElement.classList.remove("valid");
-    ccCvvValue.parentElement.lastElementChild.style.display = "none";
-    ccCvvValue.parentElement.classList.add("error");
-}
-
-if(arr.includes(false)) {
-
-    return false;
-    }
-
-}
-return true;
-}
-
-
 
 form.addEventListener('submit', e =>{
 
-let arr = [];
-arr.push(validateName());
-arr.push(validateEmail());
-arr.push(validatePayment());
-arr.push(validateActivities());
+  validateInputs(name, nameRegex);
+  validateInputs(email, validatonforEmail);
+  validateActivities();
 
-if(arr.includes(false)) {
-e.preventDefault();
-}
+  if (paymentOption.value === 'credit-card') {
+    validateInputs(ccNum, ccNumRegex);
+    validateInputs(ccZip, ccZipRegEx);
+    validateInputs(ccCvv, ccCvvRegEx);
+  }
 
-})
+  const notValid = document.querySelectorAll('.not-valid');
+  if (notValid.length > 0) {
+    e.preventDefault();
+  }
 
-
-   
-
-
-
-
-
-
-
-
-
+});
