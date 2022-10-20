@@ -22,7 +22,6 @@ const ccZipRegEx = /^[0-9]{5}$/;
 const ccCvvRegEx = /^[0-9]{3}$/;
 const nameRegex = /^[a-zA-Z\s]+$/i;
 const validatonforEmail = /^[^@]+@[^@.]+\.[a-z]+$/i;
-const onoffFocus = document.querySelectorAll('#activities input[type="checkbox"]');
 
 window.onload = function() {
     document.getElementById('name').focus();
@@ -164,10 +163,15 @@ form.addEventListener('submit', e =>{
 });
 
 
-onoffFocus.addEventListener('focus', (event)=>{
-    event.target.style.background = "red";
-});
 
-onoffFocus.addEventListener('blur', (event)=>{
-    event.target.style.background = '';
+
+checkBoxes.forEach(checkbox => {
+    checkbox.addEventListener('focus', e=>{
+        e.target.parentElement.classList.add('focus');
+    });
+    
+    checkbox.addEventListener('blur', e=>{
+        
+        e.target.parentElement.classList.add('blur');
+    });
 });
