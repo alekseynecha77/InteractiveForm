@@ -98,6 +98,18 @@ if(checked === true){
         total -= cost;
 
        }
+       cbFocusEvent(e.target);
+       for(i = 0; i<checkBoxes.length; i++){
+        checkBoxes[i].addEventListener('focus', e=>{
+            cbFocusEvent(e.target);
+
+        })
+        checkBoxes[i].addEventListener('blur', e=>{
+            blurEvent(e.target);
+
+        })
+       }
+
 
     activitiesCost.innerHTML = `Total: $${total}`;
 
@@ -157,3 +169,12 @@ form.addEventListener('submit', e =>{
   }
 
 });
+
+function cbFocusEvent(e){
+e.parentNode.classList.add('focuse');
+
+}
+function blurEvent(e){
+    e.parentNode.classList.remove('blur')
+    
+}
