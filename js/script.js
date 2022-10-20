@@ -89,7 +89,23 @@ activities.addEventListener('change', (e)=>{
 
     var cost = parseInt(e.target.getAttribute('data-cost'));
 const checked = e.target.checked;
+cbFocusEvent(e.target);
 
+for(i = 0; i<checkBoxes.length; i++){
+  
+   }
+   checkBoxes[i].addEventListener('focus', e=>{
+    if(checkBoxes[i].checked){
+        cbFocusEvent(e.target);
+            }else{
+                e.parentElement.classList.remove('focus');
+            }
+
+})
+checkBoxes[i].addEventListener('blur', e=>{
+    blurEvent(e.target);
+
+})
 if(checked === true){
     total += cost;
 
@@ -98,17 +114,7 @@ if(checked === true){
         total -= cost;
 
        }
-       cbFocusEvent(e.target);
-       for(i = 0; i<checkBoxes.length; i++){
-        checkBoxes[i].addEventListener('focus', e=>{
-            cbFocusEvent(e.target);
-
-        })
-        checkBoxes[i].addEventListener('blur', e=>{
-            blurEvent(e.target);
-
-        })
-       }
+      
 
 
     activitiesCost.innerHTML = `Total: $${total}`;
@@ -170,11 +176,15 @@ form.addEventListener('submit', e =>{
 
 });
 
+
+
+
 function cbFocusEvent(e){
-e.parentNode.classList.add('focuse');
+
+e.parentElement.classList.add('focus');
 
 }
 function blurEvent(e){
-    e.parentNode.classList.remove('blur')
+    e.parentElement.classList.remove('blur');
     
 }
