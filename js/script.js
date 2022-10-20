@@ -187,7 +187,7 @@ checkBoxes.forEach(checkbox => {
 //1) Prevent users from registering for conflicting activities
 
 
-activities.addEventListener('click', (e)=>{
+activities.addEventListener('change', (e)=>{
     const checkBoxesDate = e.target.getAttribute('data-day-and-time');
     const checkBoxesName = e.target.getAttribute('name');
     
