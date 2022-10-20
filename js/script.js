@@ -23,6 +23,8 @@ const ccCvvRegEx = /^[0-9]{3}$/;
 const nameRegex = /^[a-zA-Z\s]+$/i;
 const validatonforEmail = /^[^@]+@[^@.]+\.[a-z]+$/i;
 
+
+
 window.onload = function() {
     document.getElementById('name').focus();
     document.getElementById('other-job-role').style.display = "none";
@@ -88,8 +90,7 @@ activities.addEventListener('change', (e)=>{
 
     var cost = parseInt(e.target.getAttribute('data-cost'));
 
-    const checkBoxesDate = e.target.getAttribute('data-day-and-time');
-    const checkBoxesName = e.target.getAttribute('name');
+ 
 const checked = e.target.checked;
 
 
@@ -108,18 +109,7 @@ if(checked === true){
 
     activitiesCost.innerHTML = `Total: $${total}`;
 
-    activities.addEventListener('click', ()=>{
-
-    for(let i = 0; i<checkBoxes.length; i++){
-            if(checkBoxes[i].getAttribute('name') !== checkBoxesName && checkBoxesDate === checkBoxes[i].getAttribute('data-day-and-time')){
-                checkBoxes[i].setAttribute('disabled', '');
-        
-            }
-            else{
-                checkBoxes[i].setAttribute('active', '');
-            }
-        }
-    })
+   
 })
 
 function validateInputs(input, regex){
@@ -179,9 +169,6 @@ form.addEventListener('submit', e =>{
 
 
 
-
-
-
 checkBoxes.forEach(checkbox => {
     checkbox.addEventListener('focus', e=>{
         e.target.parentElement.classList.add('focus');
@@ -192,3 +179,20 @@ checkBoxes.forEach(checkbox => {
         e.target.parentElement.classList.remove('focus');
     });
 });
+
+//exceed expectation grade 
+
+activities.addEventListener('click', (e)=>{
+    const checkBoxesDate = e.target.getAttribute('data-day-and-time');
+    const checkBoxesName = e.target.getAttribute('name');
+    
+    for(let i = 0; i<checkBoxes.length; i++){
+            if(checkBoxes[i].getAttribute('name') !== checkBoxesName && checkBoxesDate === checkBoxes[i].getAttribute('data-day-and-time')){
+                checkBoxes[i].setAttribute('disabled', '');
+        
+            }
+            else{
+                checkBoxes[i].setAttribute('active', '');
+            }
+        }
+    })
