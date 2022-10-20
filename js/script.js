@@ -87,10 +87,13 @@ activities.addEventListener('change', (e)=>{
 
 
     var cost = parseInt(e.target.getAttribute('data-cost'));
+
+    const checkBoxesDate = e.target.getAttribute('data-day-and-time');
+    const checkBoxesName = e.target.getAttribute('name');
 const checked = e.target.checked;
 
 
-   
+
 
 if(checked === true){
     total += cost;
@@ -100,12 +103,23 @@ if(checked === true){
         total -= cost;
 
        }
-      
+ 
 
 
     activitiesCost.innerHTML = `Total: $${total}`;
 
+    activities.addEventListener('click', ()=>{
 
+    for(let i = 0; i<checkBoxes.length; i++){
+            if(checkBoxes[i].getAttribute('name') !== checkBoxesName && checkBoxesDate === checkBoxes[i].getAttribute('data-day-and-time')){
+                checkBoxes[i].setAttribute('disabled', '');
+        
+            }
+            else{
+                checkBoxes[i].setAttribute('active', '');
+            }
+        }
+    })
 })
 
 function validateInputs(input, regex){
@@ -161,6 +175,9 @@ form.addEventListener('submit', e =>{
   }
 
 });
+
+
+
 
 
 
