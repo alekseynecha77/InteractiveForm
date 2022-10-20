@@ -167,7 +167,9 @@ form.addEventListener('submit', e =>{
 });
 
 
+//Accessibility
 
+//on off focus
 
 checkBoxes.forEach(checkbox => {
     checkbox.addEventListener('focus', e=>{
@@ -181,6 +183,9 @@ checkBoxes.forEach(checkbox => {
 });
 
 //exceed expectation grade 
+
+//1) Prevent users from registering for conflicting activities
+
 
 activities.addEventListener('click', (e)=>{
     const checkBoxesDate = e.target.getAttribute('data-day-and-time');
