@@ -22,7 +22,7 @@ const ccZipRegEx = /^[0-9]{5}$/;
 const ccCvvRegEx = /^[0-9]{3}$/;
 const nameRegex = /^[a-zA-Z\s]+$/i;
 const validatonforEmail = /^[^@]+@[^@.]+\.[a-z]+$/i;
-
+const onoffFocus = document.querySelectorAll('#activities input[type="checkbox"]');
 
 window.onload = function() {
     document.getElementById('name').focus();
@@ -89,23 +89,10 @@ activities.addEventListener('change', (e)=>{
 
     var cost = parseInt(e.target.getAttribute('data-cost'));
 const checked = e.target.checked;
-cbFocusEvent(e.target);
 
-for(i = 0; i<checkBoxes.length; i++){
-  
-   }
-   checkBoxes[i].addEventListener('focus', e=>{
-    if(checkBoxes[i].checked){
-        cbFocusEvent(e.target);
-            }else{
-                e.parentElement.classList.remove('focus');
-            }
 
-})
-checkBoxes[i].addEventListener('blur', e=>{
-    blurEvent(e.target);
+   
 
-})
 if(checked === true){
     total += cost;
 
@@ -177,14 +164,10 @@ form.addEventListener('submit', e =>{
 });
 
 
+onoffFocus.addEventListener('focus', (event)=>{
+    event.target.style.background = "red";
+});
 
-
-function cbFocusEvent(e){
-
-e.parentElement.classList.add('focus');
-
-}
-function blurEvent(e){
-    e.parentElement.classList.remove('blur');
-    
-}
+onoffFocus.addEventListener('blur', (event)=>{
+    event.target.style.background = '';
+});
