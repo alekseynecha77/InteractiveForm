@@ -172,6 +172,6 @@ checkBoxes.forEach(checkbox => {
     
     checkbox.addEventListener('blur', e=>{
         
-        e.target.parentElement.classList.add('blur');
+        e.target.parentElement.classList.remove('focus');
     });
 });
