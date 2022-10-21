@@ -34,7 +34,7 @@ window.onload = function () {
 
 bitcoinPayment.style.display = "none";
 paypalPayment.style.display = "none";
-
+//Now we will add style base on what payment option the user choose
 paymentOption.addEventListener("change", (e) => {
   if (e.target.value === "credit-card") {
     creditPayment.style.display = "block";
@@ -51,6 +51,8 @@ paymentOption.addEventListener("change", (e) => {
   }
 });
 
+//here we will add no style if the value is not equal to 'other'
+//the field will be just gone until the choose option other
 e.addEventListener("change", () => {
   var value = e.value;
   if (value === "other") {
@@ -166,16 +168,20 @@ activities.addEventListener("change", (e) => {
   const checkBoxesDate = e.target.getAttribute("data-day-and-time");
   const checkBoxesName = e.target.getAttribute("name");
 
-  for (let i = 0; i < checkBoxes.length; i++) {
-    if (
-      checkBoxes[i].getAttribute("name") !== checkBoxesName &&
-      checkBoxesDate === checkBoxes[i].getAttribute("data-day-and-time")
-    ) {
+  if (e.target.checked) {
+    for (let i = 0; i < checkBoxes.length; i++) {
+      if (checkBoxes[i].getAttribute("name") !== checkBoxesName &&
+          checkBoxesDate === checkBoxes[i].getAttribute("data-day-and-time")) {
         checkBoxes[i].disabled = true;   
-     } 
-        
-        else {
-            checkBoxes[i].disabled = false;   
-        }
+      } 
+    }
+  } else {
+        for (let i = 0; i < checkBoxes.length; i++) {
+            if (checkBoxes[i].getAttribute("name") !== checkBoxesName &&
+                checkBoxesDate === checkBoxes[i].getAttribute("data-day-and-time")) {
+              checkBoxes[i].disabled = false;   
+            } 
+          }
   }
+
 });
