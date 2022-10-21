@@ -92,6 +92,7 @@ activities.addEventListener("change", (e) => {
   activitiesCost.innerHTML = `Total: $${total}`;
 });
 
+
 function validateInputs(input, regex) {
   // console.log(input, regex);
 
@@ -126,6 +127,15 @@ function validateActivities() {
     return false;
   }
 }
+function removeErrorClass(arr){
+    arr.forEach(input =>{
+        input.classList.remove("error");
+        input.parentElement.classList.remove("not-valid");
+        input.parentElement.lastElementChild.style.display = "none";
+
+    })
+
+}
 
 //validating after form has been submitted
 
@@ -138,6 +148,8 @@ form.addEventListener("submit", (e) => {
     validateInputs(ccNum, ccNumRegex);
     validateInputs(ccZip, ccZipRegEx);
     validateInputs(ccCvv, ccCvvRegEx);
+  }else{
+    removeErrorClass(ccNum, ccZip, ccCvv);
   }
 
   const notValid = document.querySelectorAll(".not-valid");
