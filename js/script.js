@@ -171,9 +171,11 @@ activities.addEventListener("change", (e) => {
       checkBoxes[i].getAttribute("name") !== checkBoxesName &&
       checkBoxesDate === checkBoxes[i].getAttribute("data-day-and-time")
     ) {
-      checkBoxes[i].setAttribute("disabled", "");
-    } else {
-      checkBoxes[i].setAttribute("active", "");
-    }
+        checkBoxes[i].disabled = true;   
+     } 
+        
+        else {
+            checkBoxes[i].disabled = false;   
+        }
   }
 });
