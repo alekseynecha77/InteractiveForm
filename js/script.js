@@ -93,6 +93,7 @@ activities.addEventListener("change", (e) => {
 });
 
 
+
 function validateInputs(input, regex) {
   // console.log(input, regex);
 
@@ -197,3 +198,21 @@ activities.addEventListener("change", (e) => {
   }
 
 });
+
+
+//Real time validation
+email.addEventListener('keyup', ()=>{
+    validateInputs(email, validatonforEmail);
+})
+name.addEventListener('keyup', ()=>{
+    validateInputs(name, nameRegex);
+})
+ccNum.addEventListener('keyup', ()=>{
+    validateInputs(ccNum, ccNumRegex);
+})
+ccZip.addEventListener('keyup', ()=>{
+    validateInputs(ccZip, ccZipRegEx);
+})
+ccCvv.addEventListener('keyup', ()=>{
+    validateInputs(ccCvv, ccCvvRegEx);
+})
